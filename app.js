@@ -180,6 +180,50 @@ function openDET(i) {
 function openLocationMenu() {
   alert("Fonction localisation à venir");
 }
+// ==========================
+// MENU LOCALISATION DU NID
+// ==========================
+function openLocationMenu() {
+  document.getElementById("locOverlay")?.remove();
+
+  const overlay = document.createElement("div");
+  overlay.id = "locOverlay";
+  overlay.innerHTML = `
+    <div class="loc-box">
+      <h2>${t("nest_location")}</h2>
+
+      <button data-action="local">
+        🗺️ <span data-i18n="map_local"></span>
+      </button>
+
+      <button data-action="send">
+        📤 <span data-i18n="map_send"></span>
+      </button>
+
+      <button data-action="shared">
+        🌍 <span data-i18n="map_shared"></span>
+      </button>
+
+      <button data-action="close">
+        <span data-i18n="close"></span>
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  applyTranslations();
+
+  overlay.onclick = e => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    if (btn.dataset.action === "local") location.href = "map.html";
+    if (btn.dataset.action === "shared") location.href = "map.html?mode=shared";
+    if (btn.dataset.action === "send") envoyerVersCartePartagee();
+    if (btn.dataset.action === "close") overlay.remove();
+  };
+}
+
 
 
 
