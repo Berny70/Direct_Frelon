@@ -10,6 +10,7 @@
   "capture": "Pantaila-argazkia",
   "nest_location": "Habia kokapena",
   "close": "Itxi",
+  "observation_label": "Behaketa {0}",
   "help_title": "Laguntza – Metxa-ontzia",
   "help_install": "Telefonoan instalazioa",
   "help_vars": "Aplikazioaren funtzionamendua",
