@@ -1,4 +1,6 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -6,47 +8,96 @@ body {
   background: #f5f5f5;
 }
 
+/* ==============================
+   HEADER
+============================== */
 .topbar {
   display: flex;
+  align-items: center;              /* ⬅️ alignement vertical */
   justify-content: space-between;
   padding: 8px 12px;
   background: #fff;
   border-bottom: 2px solid #ccc;
 }
 
-.top-logo { width: 36px; height: 36px; }
+/* zone gauche : icône + aide */
+.top-left {
+  display: flex;
+  align-items: center;              /* ⬅️ CLÉ */
+  gap: 8px;
+}
 
+.top-logo {
+  width: 36px;
+  height: 36px;
+  display: block;                   /* évite décalage inline */
+}
+
+/* titre centré */
 .top-title {
   flex: 1;
   text-align: center;
   font-size: 1.8em;
   font-weight: bold;
-}
-.subtitle {
-  font-size: 0.6em;          /* petit */
-  font-weight: normal;
-  letter-spacing: 0.12em;    /* aéré */
-  text-transform: uppercase;
-  color: #666;
-  margin-top: -4px;          /* rapproche du titre */
+  line-height: 1.1;
 }
 
+/* sous-titre */
+.subtitle {
+  font-size: 0.6em;
+  font-weight: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  margin-top: -4px;
+}
+
+/* bouton aide */
 .top-left button {
   background: #03a9f4;
   color: #fff;
   font-weight: bold;
-  padding: 8px 14px;     /* ⬅️ plus grand */
+  padding: 8px 14px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  font-size: 0.95em;     /* ⬅️ texte un peu plus lisible */
+  font-size: 0.95em;
 }
 
 .top-left button:hover {
   opacity: 0.85;
 }
 
+/* ==============================
+   BANDEAU ACTIONS HAUT
+============================== */
+.top-actions {
+  display: flex;
+  align-items: center;              /* ⬅️ alignement vertical */
+  justify-content: space-between;
+  padding: 8px 12px;
+  gap: 10px;
+  flex-wrap: nowrap;                /* ⬅️ empêche l’empilement */
+}
 
+/* boutons du bandeau */
+.top-actions button {
+  white-space: nowrap;              /* ⬅️ pas de retour à la ligne */
+  padding: 8px 12px;
+  font-weight: bold;
+}
+
+/* heure centrée */
+.date-time {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+/* ==============================
+   OBSERVATIONS
+============================== */
 #observations {
   padding: 10px;
   display: flex;
@@ -59,17 +110,20 @@ body {
   border-radius: 8px;
 }
 
-.chrono.red { background:#f8d7da; border:2px solid #c00; }
-.chrono.blue { background:#d0e7f9; border:2px solid #0077cc; }
-.chrono.green { background:#d4edda; border:2px solid #0a0; }
-.chrono.white { background:#f0f0f0; border:2px solid #999; }
+.chrono.red   { background: #f8d7da; border: 2px solid #c00; }
+.chrono.blue  { background: #d0e7f9; border: 2px solid #0077cc; }
+.chrono.green { background: #d4edda; border: 2px solid #0a0; }
+.chrono.white { background: #f0f0f0; border: 2px solid #999; }
 
+/* lignes internes */
 .row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 6px 0;
 }
 
+/* boutons d’actions */
 .row-actions button {
   flex: 1;
   margin: 0 4px;
@@ -77,11 +131,14 @@ body {
   font-weight: bold;
 }
 
+/* ==============================
+   OVERLAYS
+============================== */
 #compassOverlay,
 #detOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,4 +159,20 @@ body {
   margin: 20px 0;
 }
 
+/* ==============================
+   RESPONSIVE (petits écrans)
+============================== */
+@media (max-width: 500px) {
+  .top-title {
+    font-size: 1.5em;
+  }
 
+  .subtitle {
+    font-size: 0.55em;
+  }
+
+  .top-actions button {
+    padding: 6px 8px;
+    font-size: 0.9em;
+  }
+}
