@@ -148,22 +148,34 @@ body {
   gap: 12px;
 }
 
+/* carte observation */
 .chrono {
   padding: 12px;
   border-radius: 8px;
 }
 
+/* couleurs */
 .chrono.red   { background: #f8d7da; border: 2px solid #c00; }
 .chrono.blue  { background: #d0e7f9; border: 2px solid #0077cc; }
 .chrono.green { background: #d4edda; border: 2px solid #0a0; }
 .chrono.white { background: #f0f0f0; border: 2px solid #999; }
 
-/* lignes internes */
+/* lignes génériques */
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 6px 0;
+}
+
+/* ligne titre Observation */
+.row-main {
+  justify-content: center;      /* ⬅️ centrage horizontal */
+  text-align: center;
+}
+
+.row-main b {
+  font-size: 1.1em;
 }
 
 /* boutons d’actions */
@@ -223,4 +235,5 @@ body {
     gap: 4px;
   }
 }
+
 
