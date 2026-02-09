@@ -174,3 +174,7 @@ function openDET(i) {
     };
   });
 }
+function openLocationMenu() {
+  alert("Fonction localisation à venir");
+}
+
