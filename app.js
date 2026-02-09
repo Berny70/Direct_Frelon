@@ -177,9 +177,6 @@ function openDET(i) {
     };
   });
 }
-function openLocationMenu() {
-  alert("Fonction localisation à venir");
-}
 // ==========================
 // MENU LOCALISATION DU NID
 // ==========================
@@ -223,6 +220,7 @@ function openLocationMenu() {
     if (btn.dataset.action === "close") overlay.remove();
   };
 }
+
 
 
 
