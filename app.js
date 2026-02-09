@@ -30,8 +30,10 @@ function saveObservations() {
   localStorage.setItem("chronoObservations", JSON.stringify(data));
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("i18n-ready", () => {
   const container = document.getElementById("observations");
+  // génération UI ici
+});
 
   observationColors.forEach((color, i) => {
     const o = {
@@ -220,6 +222,7 @@ function openLocationMenu() {
     if (btn.dataset.action === "close") overlay.remove();
   };
 }
+
 
 
 
