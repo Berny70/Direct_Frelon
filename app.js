@@ -63,9 +63,13 @@ function initUI() {
     const div = document.createElement("div");
     div.className = `chrono ${color}`;
     div.innerHTML = `
-      <div class="row row-main">
-        <b>${t("observation_label")} ${i + 1}</b>
-      </div>
+    <div class="row row-main">
+      <b>
+        <span data-i18n="observation_label"></span>
+        ${i + 1}
+      </b>
+    </div>
+
 
       <div class="row row-info">
         <div><b>Lat :</b> <span id="lat${i}">--</span></div>
@@ -266,3 +270,4 @@ function openLocationMenu() {
     if (btn.dataset.action === "close") overlay.remove();
   };
 }
+
