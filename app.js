@@ -36,11 +36,12 @@ function saveObservations() {
       direction: o.direction,
       color: o.color
     }));
+
   localStorage.setItem("chronoObservations", JSON.stringify(data));
 }
 
 // ==========================
-// INITIALISATION UI (APRÈS i18n)
+// INITIALISATION UI
 // ==========================
 function initUI() {
   const container = document.getElementById("observations");
@@ -94,9 +95,9 @@ function initUI() {
 }
 
 // ==========================
-// ATTENTE i18n
+// DOM READY
 // ==========================
-document.addEventListener("i18n-ready", initUI);
+window.addEventListener("DOMContentLoaded", initUI);
 
 // ==========================
 // GPS
@@ -105,8 +106,10 @@ function getPos(i) {
   navigator.geolocation.getCurrentPosition(pos => {
     observations[i].lat = pos.coords.latitude.toFixed(5);
     observations[i].lon = pos.coords.longitude.toFixed(5);
+
     document.getElementById(`lat${i}`).textContent = observations[i].lat;
     document.getElementById(`lon${i}`).textContent = observations[i].lon;
+
     saveObservations();
   });
 }
@@ -117,8 +120,10 @@ function getPos(i) {
 function updateDirection(i) {
   const o = observations[i];
   o.direction = moyenneCirculaire(o.directions);
+
   document.getElementById(`dir${i}`).textContent =
     o.direction !== null ? o.direction + "°" : "---";
+
   saveObservations();
 }
 
@@ -145,6 +150,7 @@ function openCompass(i) {
       <button data-action="close">${t("close")}</button>
     </div>
   `;
+
   document.body.appendChild(overlay);
 }
 
@@ -178,9 +184,11 @@ document.addEventListener("click", async e => {
 
 function onOrientation(e) {
   if (!compassActive || e.alpha == null) return;
+
   const heading = (360 - e.alpha) % 360 | 0;
 
   if (lastHeading !== null && Math.abs(heading - lastHeading) > 20) return;
+
   lastHeading = heading;
   currentHeading = heading;
 
@@ -207,6 +215,7 @@ function openDET(i) {
       <button id="closeDET">${t("close")}</button>
     </div>
   `;
+
   document.body.appendChild(overlay);
 
   overlay.querySelector("#closeDET").onclick = () => overlay.remove();
@@ -233,10 +242,6 @@ function openLocationMenu() {
 
       <button data-action="local">
         🗺️ <span data-i18n="map_local"></span>
-      </button>
-
-      <button data-action="send">
-        📤 <span data-i18n="map_send"></span>
       </button>
 
       <button data-action="shared">
