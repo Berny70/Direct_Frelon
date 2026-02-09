@@ -22,6 +22,21 @@ body {
   font-size: 1.8em;
   font-weight: bold;
 }
+.top-left button {
+  background: #03a9f4;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 14px;     /* ⬅️ plus grand */
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95em;     /* ⬅️ texte un peu plus lisible */
+}
+
+.top-left button:hover {
+  opacity: 0.85;
+}
+
 
 #observations {
   padding: 10px;
@@ -77,3 +92,4 @@ body {
   font-weight: bold;
   margin: 20px 0;
 }
+
