@@ -12,6 +12,7 @@
 
   "nest_location": "Localisation du nid",
   "close": "Fermer",
+  "observation_label": "Observation {0}",
 
   "help_title": "Aide – Pot à mèche",
   "help_install": "Installation sur smartphone",
