@@ -12,7 +12,7 @@
 
   "nest_location": "Nest location",
   "close": "Close",
-
+  "observation_label": "Observation {0}",
   "help_title": "Help – Wick Trap",
   "help_install": "Smartphone installation",
   "help_vars": "How the app works",
