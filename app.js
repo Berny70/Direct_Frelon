@@ -46,7 +46,11 @@ window.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement("div");
     div.className = `chrono ${color}`;
     div.innerHTML = `
-      <div class="row row-main"><b>Observation ${i + 1}</b></div>
+     <div class="row row-main">
+     <b data-i18n="observation_label" data-i18n-args="${i + 1}">
+       Observation ${i + 1}
+     </b>
+     </div>
 
       <div class="row row-info">
         <div><b>Lat :</b> <span id="lat${i}">--</span></div>
@@ -177,4 +181,5 @@ function openDET(i) {
 function openLocationMenu() {
   alert("Fonction localisation à venir");
 }
+
 
