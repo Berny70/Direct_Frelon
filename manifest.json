@@ -1,19 +1,25 @@
 {
-    "name": "Chronos",
-    "short_name": "Chronos",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
-    "icons": [
-      {
-        "src": "icon_4_compass.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
+  "name": "Pot à Mèche",
+  "short_name": "Pot à Mèche",
+  "start_url": "/Direct_Frelon/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icon_192_compass.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_512_compass.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
 
   
+
 
 
