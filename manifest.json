@@ -7,12 +7,12 @@
   "theme_color": "#ffffff",
   "icons": [
     {
-      "src": "icon_192_compass.png",
+      "src": "icon_4_boussoles.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon_512_compass.png",
+      "src": "icon_4_boussoles.png",
       "sizes": "512x512",
       "type": "image/png"
     }
@@ -20,6 +20,7 @@
 }
 
   
+
 
 
 
