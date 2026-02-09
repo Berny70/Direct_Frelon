@@ -11,7 +11,7 @@
   "capture": "Bildschirmfoto",
   "nest_location": "Nestlokalisierung",
   "close": "Schließen",
-
+  "observation_label": "Beobachtung {0}",
   "help_title": "Hilfe – Locktopf",
   "help_install": "Installation auf dem Smartphone",
   "help_vars": "Funktionsweise der App",
