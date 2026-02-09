@@ -22,6 +22,15 @@ body {
   font-size: 1.8em;
   font-weight: bold;
 }
+.subtitle {
+  font-size: 0.6em;          /* petit */
+  font-weight: normal;
+  letter-spacing: 0.12em;    /* aéré */
+  text-transform: uppercase;
+  color: #666;
+  margin-top: -4px;          /* rapproche du titre */
+}
+
 .top-left button {
   background: #03a9f4;
   color: #fff;
@@ -92,4 +101,5 @@ body {
   font-weight: bold;
   margin: 20px 0;
 }
+
 
