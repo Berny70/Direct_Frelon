@@ -111,12 +111,19 @@ window.addEventListener("DOMContentLoaded", () => {
       
       // 🔒 MODE DIRECTION : nettoyage UI AVANT handlers
       if (MODE_DIRECTION_ONLY) {
+        // Supprimer chrono
         div.querySelector(".start")?.remove();
         div.querySelector(".reset")?.remove();
+        div.querySelector(".time")?.remove();
       
+        // Supprimer vitesse et temps moyen
         div.querySelector(`#vit${i}`)?.closest("div")?.remove();
         div.querySelector(`#m${i}`)?.closest("div")?.remove();
+      
+        // Supprimer distance
+        div.querySelector(`#d${i}`)?.closest("div")?.remove();
       }
+
       
       // Handlers communs (toujours utiles)
       div.querySelector(".pos").onclick = () => getPos(i);
@@ -502,6 +509,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
