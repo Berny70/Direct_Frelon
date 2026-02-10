@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chrono Frelon</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icône -->
+  <link rel="icon" href="./icon_4_chrono_2.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<!-- ==========================
+     HEADER
+========================== -->
+<header class="topbar">
+
+  <div class="top-left">
+    <img src="./icon_4_chrono_2.png" class="top-logo" alt="logo">
+
+    <!-- HELP -->
+    <button onclick="openHelpPopup()" data-i18n="help">Aide</button>
+  </div>
+
+  <div class="top-center">
+    <div class="top-title" data-i18n="app_title">Pot à mèche</div>
+    <div class="top-subtitle" data-i18n="app_subtitle">Chronos + Direction</div>
+  </div>
+
+  <div class="top-right">
+    <div class="author">B. Barrois</div>
+
+    <div class="top-right-sub">
+      <!-- Contact -->
+      <button id="btnMail" title="Contact" type="button">✉️</button>
+
+      <!-- Version -->
+      <span id="version">v. : x.x</span>
+    </div>
+  </div>
+
+</header>
+
+
+<!-- ==========================
+     ACTIONS HAUT DE PAGE
+========================== -->
+<div class="top-actions">
+  <button id="btnCapt" class="btn-capt" data-i18n="capture">
+    Capture d’écran
+  </button>
+
+  <div id="dateTime" class="date-time"></div>
+
+  <button id="btnLoc" class="btn-loc" data-i18n="nest_location">
+    Localisation du nid
+  </button>
+</div>
+<!-- Sélecteur de langue centré -->
+<div class="lang-bar">
+  <button data-lang="fr">🇫🇷</button>
+  <button data-lang="en">🇬🇧</button>
+  <button data-lang="de">🇩🇪</button>
+  <button data-lang="it">🇮🇹</button>
+  <button data-lang="es">🇪🇸</button>
+  <button data-lang="nl">🇳🇱</button>
+  <!-- Alsacien -->
+  <button data-lang="als">
+    <img src="i18n/Alsace_flag.png" alt="Alsacien">
+  </button>
+
+  <!-- Breton -->
+  <button data-lang="bz">
+    <img src="i18n/Bz_flag.jpg" alt="Brezhoneg">
+  </button>
+
+  <!-- Occitan -->
+  <button data-lang="oc">
+    <img src="i18n/Oc_flag.jpg" alt="Occitan">
+  </button>
+    <!-- Basque (ik) -->
+  <button data-lang="ik">
+    <img src="i18n/Ik_flag.jpg" alt="Basque">
+  </button>
+</div>
+
+<!-- ==========================
+     CONTENEUR DES CHRONOS
+========================== -->
+<main id="chronos">
+  <!-- Généré dynamiquement par app.js -->
+</main>
+
+<!-- ==========================
+     VERSION
+========================== -->
+<script src="./version.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const v = document.getElementById("version");
+  if (v && typeof APP_VERSION !== "undefined") {
+    v.textContent = "v. : " + APP_VERSION;
+  }
+});
+</script>
+
+<!-- ==========================
+     DATE & HEURE
+========================== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("dateTime");
+  if (!el) return;
+
+  function updateDateTime() {
+    const now = new Date();
+    el.textContent =
+      now.toLocaleDateString("fr-FR") + " " +
+      now.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+  }
+
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+});
+</script>
+<!-- Sélecteur de langue -->
+
+<!-- ==========================
+     I18N (⚠️ AVANT app.js & help.js)    
+========================== -->
+<script src="./js/i18n.js"></script>
+
+<!-- ==========================
+     CAPTURE D'ÉCRAN
+========================== -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("btnCapt");
+  if (!btn) return;
+
+  btn.addEventListener("click", async () => {
+    const canvas = await html2canvas(document.body, {
+      scale: 2,
+      useCORS: true
+    });
+
+    const blob = await new Promise(resolve =>
+      canvas.toBlob(resolve, "image/png")
+    );
+
+    const filename =
+      "Chrono_Frelon_" +
+      new Date().toISOString().replace(/[:.]/g, "-") +
+      ".png";
+
+    if (navigator.share) {
+      try {
+        const file = new File([blob], filename, { type: "image/png" });
+        await navigator.share({
+          files: [file],
+          title: "Chrono Frelon"
+        });
+        return;
+      } catch (e) {}
+    }
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+  });
+});
+</script>
+<!-- ==========================
+     APP de la base SUPABASE
+========================== -->  
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="./js/supabase.js"></script>
+
+<!-- ==========================
+     APP PRINCIPALE
+========================== -->
+<script src="./app.js"></script>
+
+<!-- ==========================
+     HELP (UI)      
+========================== -->
+<script src="./js/help.js"></script>
+
+<!-- ==========================
+     SERVICE WORKER
+========================== -->
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js");
+}
+</script>
+
+
+  
+</body>
+</html>
