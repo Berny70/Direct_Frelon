@@ -13,6 +13,15 @@ let lastHeading = null;
 let compassActive = false;
 
 // ==========================
+// mode au démarrage 
+// ==========================
+const MODE =
+  localStorage.getItem("mode") || "direction"; 
+// "chrono" | "direction"
+
+const MODE_DIRECTION_ONLY = MODE === "direction";
+
+// ==========================
 // MOYENNE CIRCULAIRE
 // ==========================
 function moyenneCirculaire(degs) {
@@ -509,6 +518,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
