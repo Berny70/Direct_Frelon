@@ -1,6 +1,7 @@
 {
   "app_title": "Trampa de mecha",
-  "app_subtitle": "dirección",
+  "mode_chrono": "Crono + Dirección",
+  "mode_direction": "Dirección",
   "help": "Ayuda",
   "start": "Iniciar / Detener",
   "reset": "Reiniciar",
