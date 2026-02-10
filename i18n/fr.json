@@ -1,6 +1,9 @@
 {
   "app_title": "Pot à mèche",
-  "app_subtitle": "direction",
+
+  "mode_chrono": "Chrono + Direction",
+  "mode_direction": "Direction",
+
   "help": "Aide",
 
   "start": "Start / Stop",
