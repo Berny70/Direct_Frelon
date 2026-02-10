@@ -32,7 +32,7 @@ function moyenneCirculaire(degs) {
 // ==========================
 // SAUVEGARDE OBSERVATIONS
 // ==========================
-  function saveObservations() {
+   function saveObservations() {
     const obs = chronos.map(c => {
       if (
         c.lat === "--" ||
@@ -40,25 +40,11 @@ function moyenneCirculaire(degs) {
         c.direction == null
       ) return null;
   
-      // ⬅️ temps moyen
-      let moy = 0;
-  
-      if (c.essais.length > 0) {
-        const total = c.essais.reduce((a, b) => a + b, 0);
-        moy = total / c.essais.length;
-      }
-  
-      // ⬅️ règle métier explicite
-      const distance =
-        moy > 0
-          ? Math.round(moy * c.vitesse / 2)
-          : 0;
-  
       return {
         lat: parseFloat(c.lat),
         lon: parseFloat(c.lon),
         direction: c.direction,
-        distance,
+        distance: 0,   // 🔒 verrouillé
         color: c.color
       };
     }).filter(Boolean);
@@ -67,6 +53,7 @@ function moyenneCirculaire(degs) {
       localStorage.setItem("chronoObservations", JSON.stringify(obs));
     }
   }
+
 
 // ==========================
 // INITIALISATION UI
@@ -527,6 +514,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
