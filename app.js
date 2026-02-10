@@ -121,18 +121,32 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
 
     container.appendChild(div);
-
-    div.querySelector(".start").onclick = () => startStop(i);
-    div.querySelector(".reset").onclick = () => resetChrono(i);
-    div.querySelector(".pos").onclick = () => getPos(i);
-    div.querySelector(".det").onclick = () => openDET(i);
-    div.querySelector(".compass").onclick = () => openCompass(i);
-
-    div.querySelector(`#vit${i}`).oninput = e => {
-      c.vitesse = +e.target.value;
-      updateStats(i);
-    };
-  });
+      
+      // 🔒 MODE DIRECTION : nettoyage UI AVANT handlers
+      if (MODE_DIRECTION_ONLY) {
+        div.querySelector(".start")?.remove();
+        div.querySelector(".reset")?.remove();
+      
+        div.querySelector(`#vit${i}`)?.closest("div")?.remove();
+        div.querySelector(`#m${i}`)?.closest("div")?.remove();
+      }
+      
+      // Handlers communs (toujours utiles)
+      div.querySelector(".pos").onclick = () => getPos(i);
+      div.querySelector(".det").onclick = () => openDET(i);
+      div.querySelector(".compass").onclick = () => openCompass(i);
+      
+      // Handlers chrono uniquement si mode normal
+      if (!MODE_DIRECTION_ONLY) {
+        div.querySelector(".start").onclick = () => startStop(i);
+        div.querySelector(".reset").onclick = () => resetChrono(i);
+      
+        div.querySelector(`#vit${i}`).oninput = e => {
+          c.vitesse = +e.target.value;
+          updateStats(i);
+        };
+      }
+  );
 
   document.getElementById("btnLoc")?.addEventListener("click", openLocationMenu);
 });
@@ -513,6 +527,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
