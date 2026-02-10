@@ -468,26 +468,20 @@ function openDET(i) {
     <div class="det-box">
       <h2>${t("detail_title")} ${c.color}</h2>
 
-      ${c.essais.map((tps, k) => `
-        <div class="det-line">
-          ${t("try")} ${k + 1} : ${Math.ceil(tps)} s
-          <button class="del-essai" data-k="${k}">
-            ${t("delete")}
-          </button>
-        </div>
-      `).join("")}
-
-      <hr>
       <h3>${t("directions")}</h3>
 
-      ${c.directions.map((d, k) => `
-        <div class="det-line">
-          ${d}°
-          <button class="del-dir" data-k="${k}">
-            ${t("delete")}
-          </button>
-        </div>
-      `).join("")}
+      ${
+        c.directions.length
+          ? c.directions.map((d, k) => `
+              <div class="det-line">
+                ${d}°
+                <button class="del-dir" data-k="${k}">
+                  ${t("delete")}
+                </button>
+              </div>
+            `).join("")
+          : `<div class="det-line"><i>${t("no_direction") || "Aucune direction enregistrée"}</i></div>`
+      }
 
       <br>
       <button id="closeDET">${t("close")}</button>
@@ -496,16 +490,10 @@ function openDET(i) {
 
   document.body.appendChild(overlay);
 
+  // fermeture
   overlay.querySelector("#closeDET").onclick = () => overlay.remove();
 
-  overlay.querySelectorAll(".del-essai").forEach(btn => {
-    btn.onclick = () => {
-      chronos[detIndex].essais.splice(btn.dataset.k, 1);
-      updateStats(detIndex);
-      openDET(detIndex);
-    };
-  });
-
+  // suppression d’une direction
   overlay.querySelectorAll(".del-dir").forEach(btn => {
     btn.onclick = () => {
       chronos[detIndex].directions.splice(btn.dataset.k, 1);
@@ -514,6 +502,8 @@ function openDET(i) {
     };
   });
 }
+
+
 
 
 
