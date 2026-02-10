@@ -149,6 +149,34 @@ window.addEventListener("DOMContentLoaded", () => {
           updateStats(i);
         };
       }
+      // ==========================
+      // Sélecteur de mode (header)
+      // ==========================
+      const btnChrono = document.getElementById("btnModeChrono");
+      const btnDirection = document.getElementById("btnModeDirection");
+    
+      if (btnChrono && btnDirection) {
+    
+        if (MODE_DIRECTION_ONLY) {
+          btnDirection.classList.add("active");
+        } else {
+          btnChrono.classList.add("active");
+        }
+    
+        btnChrono.onclick = () => {
+          localStorage.setItem("mode", "chrono");
+          location.reload();
+        };
+    
+        btnDirection.onclick = () => {
+          localStorage.setItem("mode", "direction");
+          location.reload();
+        };
+      }
+
+
+
+    
   });
 
   document.getElementById("btnLoc")?.addEventListener("click", openLocationMenu);
@@ -518,6 +546,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
