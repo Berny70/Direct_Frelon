@@ -1,6 +1,7 @@
 {
   "app_title": "Pod gwialenn",
-  "app_subtitle": "Roud",
+  "mode_chrono": "Chrono + Tu",
+  "mode_direction": "Tu",
   "help": "Sikour",
   "start": "Loc’hañ / Arsaviñ",
   "reset": "Adderaouekaat",
