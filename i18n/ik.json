@@ -1,6 +1,7 @@
 {
   "app_title": "Metxa-ontzia",
-  "app_subtitle": "Norabidea",
+  "mode_chrono": "Kronoa + Norabidea",
+  "mode_direction": "Norabidea",
   "help": "Laguntza",
   "start": "Hasi / Gelditu",
   "reset": "Berrezarri",
