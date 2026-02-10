@@ -4,7 +4,6 @@
 const chronoColors = ["red", "blue", "green", "white"];
 const chronos = [];
 const DEFAULT_VITESSE = 4;
-const MODE_DIRECTION_ONLY = true;
 
 let detIndex = null;
 let currentCompassIndex = null;
@@ -546,6 +545,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
