@@ -1,5 +1,7 @@
 {
   "app_title": "Jacht op de aziatische hoornaar",
+  "mode_chrono": "Chrono + Richting",
+  "mode_direction": "Richting",
   "help": "Hulp",
   "start": "Start / Stop",
   "reset": "Reset",
