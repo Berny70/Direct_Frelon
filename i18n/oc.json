@@ -1,6 +1,7 @@
 {
   "app_title": "Pòt amb mècha",
-  "app_subtitle": "Direccion",
+  "mode_chrono": "Cronò + Direccion",
+  "mode_direction": "Direccion",
   "help": "Ajuda",
   "start": "Aviar / Arrestar",
   "reset": "Reïnicializar",
