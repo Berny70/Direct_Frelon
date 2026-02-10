@@ -1,6 +1,7 @@
 {
   "app_title": "Dochtpot",
-  "app_subtitle": "Rìchtung",
+  "mode_chrono": "Chrono + Rìchtung",
+  "mode_direction": "Rìchtung",
   "help": "Hìlf",
   "start": "Starte / Stoppe",
   "reset": "Zrìcksetze",
