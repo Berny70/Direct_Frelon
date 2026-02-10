@@ -1,6 +1,7 @@
 {
   "app_title": "Trappola a stoppino",
-  "app_subtitle": "direzione",
+  "mode_chrono": "Crono + Direzione",
+  "mode_direction": "Direzione",
   "help": "Aiuto",
   "start": "Avvia / Arresta",
   "reset": "Reset",
