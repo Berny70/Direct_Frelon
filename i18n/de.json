@@ -1,6 +1,7 @@
 {
   "app_title": "Locktopf",
-  "app_subtitle": "richtung",
+  "mode_chrono": "Chrono + Richtung",
+  "mode_direction": "Richtung",
   "help": "Hilfe",
 
   "start": "Start / Stopp",
