@@ -1,6 +1,9 @@
 {
   "app_title": "Wick Trap",
-  "app_subtitle": "direction",
+
+  "mode_chrono": "Timer + Direction",
+  "mode_direction": "Direction",
+
   "help": "Help",
 
   "start": "Start / Stop",
