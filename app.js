@@ -40,7 +40,7 @@ function moyenneCirculaire(degs) {
 // ==========================
 // SAUVEGARDE OBSERVATIONS
 // ==========================
-   function saveObservations() {
+  function saveObservations() {
     const obs = chronos.map(c => {
       if (
         c.lat === "--" ||
@@ -52,7 +52,9 @@ function moyenneCirculaire(degs) {
         lat: parseFloat(c.lat),
         lon: parseFloat(c.lon),
         direction: c.direction,
-        distance: 0,   // 🔒 verrouillé
+        directions: c.directions,
+        essais: c.essais,
+        vitesse: c.vitesse,
         color: c.color
       };
     }).filter(Boolean);
@@ -64,24 +66,34 @@ function moyenneCirculaire(degs) {
 // ==========================
 // RESTAURATION OBSERVATIONS
 // ==========================
-function restoreObservations() {
-  const obs = JSON.parse(localStorage.getItem("chronoObservations") || "[]");
-
-  obs.forEach((o, i) => {
-    if (!chronos[i]) return;
-
-    const c = chronos[i];
-
-    c.lat = o.lat.toFixed(5);
-    c.lon = o.lon.toFixed(5);
-    c.direction = o.direction;
-    c.directions = [o.direction]; // minimum pour cohérence
-
-    document.getElementById(`lat${i}`).textContent = c.lat;
-    document.getElementById(`lon${i}`).textContent = c.lon;
-    document.getElementById(`dir${i}`).textContent = c.direction + "°";
-  });
-}
+  function restoreObservations() {
+    const obs = JSON.parse(localStorage.getItem("chronoObservations") || "[]");
+  
+    obs.forEach((o, i) => {
+      if (!chronos[i]) return;
+      const c = chronos[i];
+  
+      // état interne
+      c.lat = o.lat.toFixed(5);
+      c.lon = o.lon.toFixed(5);
+      c.direction = o.direction;
+      c.directions = o.directions || [];
+      c.essais = o.essais || [];
+      c.vitesse = o.vitesse || DEFAULT_VITESSE;
+      c.running = false;
+      c.startTime = 0;
+  
+      // UI
+      document.getElementById(`lat${i}`).textContent = c.lat;
+      document.getElementById(`lon${i}`).textContent = c.lon;
+      document.getElementById(`dir${i}`).textContent = c.direction + "°";
+  
+      if (!MODE_DIRECTION_ONLY) {
+        document.getElementById(`vit${i}`).value = c.vitesse;
+        updateStats(i); // 🔑 recalcule moyennes & distances
+      }
+    });
+  }
 
 // ==========================
 // INITIALISATION UI
@@ -566,6 +578,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
