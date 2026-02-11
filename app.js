@@ -172,7 +172,12 @@ window.addEventListener("DOMContentLoaded", () => {
       // Handlers chrono uniquement si mode normal
       if (!MODE_DIRECTION_ONLY) {
         div.querySelector(".start").onclick = () => startStop(i);
+      if (MODE_DIRECTION_ONLY) {
+        div.querySelector(".reset").onclick = () => resetDirectionOnly(i);
+      } else {
         div.querySelector(".reset").onclick = () => resetChrono(i);
+      }
+
       
         div.querySelector(`#vit${i}`).oninput = e => {
           c.vitesse = +e.target.value;
@@ -591,6 +596,7 @@ function resetDirectionOnly(i) {
 
   saveObservations();
 }
+
 
 
 
