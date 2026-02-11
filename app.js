@@ -153,7 +153,6 @@ window.addEventListener("DOMContentLoaded", () => {
       if (MODE_DIRECTION_ONLY) {
         // Supprimer chrono
         div.querySelector(".start")?.remove();
-        div.querySelector(".reset")?.remove();
         div.querySelector(".time")?.remove();
       
         // Supprimer vitesse et temps moyen
@@ -578,6 +577,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
