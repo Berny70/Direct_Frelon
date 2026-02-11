@@ -577,6 +577,21 @@ function openDET(i) {
     };
   });
 }
+function resetDirectionOnly(i) {
+  const c = chronos[i];
+
+  c.lat = "--";
+  c.lon = "--";
+  c.directions = [];
+  c.direction = 0;
+
+  document.getElementById(`lat${i}`).textContent = "--";
+  document.getElementById(`lon${i}`).textContent = "--";
+  document.getElementById(`dir${i}`).textContent = "0°";
+
+  saveObservations();
+}
+
 
 
 
