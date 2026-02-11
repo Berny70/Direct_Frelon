@@ -27,6 +27,14 @@ if (!MODE_SHARED) {
     localStorage.getItem("chronoObservations") || "[]"
   );
 
+  // 🔧 NORMALISATION (OPTION B compatible)
+  observations = observations.map(o => {
+    if (o.distance == null) {
+      o.distance = 0; // distance inconnue → hypothèse
+    }
+    return o;
+  });
+
   if (!observations.length) {
     alert(
       t("map_no_data_title") + "\n\n" +
@@ -70,10 +78,10 @@ map.on("moveend", () => {
 // ==========================
 function afficherObservations() {
   observations.forEach(obs => {
+
     if (
       obs.lat == null ||
       obs.lon == null ||
-      obs.distance == null ||
       obs.direction == null
     ) return;
 
@@ -93,53 +101,52 @@ function afficherObservations() {
        ${t("map_distance")}: ${obs.distance} m<br>
        ${t("map_direction")}: ${obs.direction}°`
     );
-    // Direction
+
     let dest;
     let polylineOptions;
-    
-    // CAS 1 — distance inconnue → trait hypothétique 500 m pointillé
+
+    // ==========================
+    // CAS 1 — distance inconnue
+    // ==========================
     if (obs.distance === 0) {
-    
+
       dest = destinationPoint(
         obs.lat,
         obs.lon,
         obs.direction,
         500
       );
-    
+
       polylineOptions = {
-        color: color,
+        color,
         weight: 2,
         dashArray: "6 6",
         opacity: 0.8
       };
-    
-    // CAS 2 — distance connue → trait réel
+
+    // ==========================
+    // CAS 2 — distance connue
+    // ==========================
     } else {
-    
+
       dest = destinationPoint(
         obs.lat,
         obs.lon,
         obs.direction,
         obs.distance
       );
-    
+
       polylineOptions = {
-        color: color,
+        color,
         weight: 3,
         opacity: 1
       };
     }
-    
+
     L.polyline(
       [start, [dest.lat, dest.lon]],
       polylineOptions
     ).addTo(map);
-
-
-
-
-    
   });
 }
 
@@ -200,6 +207,12 @@ async function chargerObservationsPartagees() {
       const lon = pos.coords.longitude;
 
       observations = await chargerDonneesAutour(lat, lon);
+
+      // normalisation distance
+      observations = observations.map(o => {
+        if (o.distance == null) o.distance = 0;
+        return o;
+      });
 
       if (!observations.length) {
         alert(
