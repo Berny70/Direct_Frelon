@@ -197,6 +197,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     
   });
+ restoreObservations();
 
   document.getElementById("btnLoc")?.addEventListener("click", openLocationMenu);
 });
@@ -565,6 +566,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
