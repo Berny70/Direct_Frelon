@@ -169,21 +169,22 @@ window.addEventListener("DOMContentLoaded", () => {
       div.querySelector(".det").onclick = () => openDET(i);
       div.querySelector(".compass").onclick = () => openCompass(i);
       
-      // Handlers chrono uniquement si mode normal
-      if (!MODE_DIRECTION_ONLY) {
-        div.querySelector(".start").onclick = () => startStop(i);
-      if (MODE_DIRECTION_ONLY) {
-        div.querySelector(".reset").onclick = () => resetDirectionOnly(i);
-      } else {
-        div.querySelector(".reset").onclick = () => resetChrono(i);
-      }
-
-      
-        div.querySelector(`#vit${i}`).oninput = e => {
-          c.vitesse = +e.target.value;
-          updateStats(i);
-        };
-      }
+      // START uniquement en mode chrono
+        if (!MODE_DIRECTION_ONLY) {
+          div.querySelector(".start").onclick = () => startStop(i);
+        
+          div.querySelector(`#vit${i}`).oninput = e => {
+            c.vitesse = +e.target.value;
+            updateStats(i);
+          };
+        }
+        
+        // RESET fonctionne dans les deux modes
+        if (MODE_DIRECTION_ONLY) {
+          div.querySelector(".reset").onclick = () => resetDirectionOnly(i);
+        } else {
+          div.querySelector(".reset").onclick = () => resetChrono(i);
+        }
       // ==========================
       // Sélecteur de mode (header)
       // ==========================
@@ -596,6 +597,7 @@ function resetDirectionOnly(i) {
 
   saveObservations();
 }
+
 
 
 
