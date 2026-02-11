@@ -61,7 +61,27 @@ function moyenneCirculaire(degs) {
       localStorage.setItem("chronoObservations", JSON.stringify(obs));
     }
   }
+// ==========================
+// RESTAURATION OBSERVATIONS
+// ==========================
+function restoreObservations() {
+  const obs = JSON.parse(localStorage.getItem("chronoObservations") || "[]");
 
+  obs.forEach((o, i) => {
+    if (!chronos[i]) return;
+
+    const c = chronos[i];
+
+    c.lat = o.lat.toFixed(5);
+    c.lon = o.lon.toFixed(5);
+    c.direction = o.direction;
+    c.directions = [o.direction]; // minimum pour cohérence
+
+    document.getElementById(`lat${i}`).textContent = c.lat;
+    document.getElementById(`lon${i}`).textContent = c.lon;
+    document.getElementById(`dir${i}`).textContent = c.direction + "°";
+  });
+}
 
 // ==========================
 // INITIALISATION UI
@@ -545,6 +565,7 @@ function openDET(i) {
     };
   });
 }
+
 
 
 
